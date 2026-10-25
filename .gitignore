@@ -1,0 +1,12 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# editors / swap files
+*.swp
+.idea/
+.vscode/
+
+# logs and misc
+*.log
+Thumbs.db

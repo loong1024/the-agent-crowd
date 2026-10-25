@@ -18,14 +18,14 @@
 | 6 | 去个体化 / 责任稀释 | 「反正还有别人会审」:各自放水,合并者以为有人兜底 | 每个评审负一段明确范围;结论必须署名 + 判级 + 证据链,可追责到具体 agent(P5/P6) | Condorcet 1785;Debate or Vote 2025 |
 | 7 | 威望(prestige / 锚定) | 知道作者 / 模型血统,评审系统性偏松或偏严;主会话把预期写进下游 dispatch prompt = 真正的群体间暗示 + 锚定 | 盲审;派发词只含任务事实,编排者最后说话(P2/P4) | Sharma et al. 2023(sycophancy / anchoring);Surowiecki 2004;勒庞仅命名 |
 | 8 | 断言—重复—传染 | 全绿报告在管线中越传越自信,下游信语气不信核查 | 每个论断必须带可核查证据;禁裸绿(P5) | Du et al. 2023;Cognition 2025 |
-| 9 | 群体渴求幻觉 | 一致且自信的错误比零散的正确更有传染力;红队走过场 | 保留异议;合并报告必须引用异议(P6) | Emergence of Biased Consensus 2026;Le Bon 1895 |
-| 10 | 群体观念必须具象化才有效 | 抽象原则(「要严格」「仔细点」)改变不了 agent 行为 | 给具体样例、反例与输出格式,不给抽象形容词 | Anthropic 2025(样例化实践;勒庞原论未采纳,见采纳说明) |
+| 9 | 群体渴求幻象(illusion) | 一致且自信的错误比零散的正确更有传染力;红队走过场 | 保留异议;合并报告必须引用异议(P6) | Emergence of Biased Consensus 2026;Le Bon 1895 |
+| 10 | 群体观念必须具象化才有效 | 抽象原则(「要严格」「仔细点」)改变不了 agent 行为 | 给具体样例、反例与输出格式,不给抽象形容词 | 工程经验(无直接文献) |
 | 11 | 群体可英雄可暴徒 | 同一套群体机制既可产出高质量整合,也可产出集体幻觉;走向由机制决定,与数量无关 | 先设计独立性机制,再谈规模(P0) | Le Bon 1895;Du et al. 2023 |
 
 ## 二、逐条展开
 
 ### 1. 相关错误(病因一:同源)
-同源的 agent——同一个模型、同一份训练数据、乃至同一段提示词——共享同一套先验与盲区,于是在相同的地方一起错;错误是相关的,N 个 agent 不构成 N 份独立证据。这解释了为什么「三个模型一致」可能是假安全:一致性来自同源,不来自独立验证。对策是 P3:异构模型通道、实质性改写提示词;统计口径上同源票只记一票。注意分寸(R2 修正):异构是**降相关,不是消相关**——不同模型仍共享训练语料与 RLHF 惯例;且异构引入判分口径漂移,合并者需用 rubric 锚定样例做校准。ChatEval(Chan et al., ICLR 2024)在评审者构成上的实验支持同一方向:评审者构成并非无关变量。
+同源的 agent——同一个模型、同一份训练数据、乃至同一段提示词——共享同一套先验与盲区,于是在相同的地方一起错;错误是相关的,N 个 agent 不构成 N 份独立证据。这解释了为什么「三个模型一致」可能是假安全:一致性来自同源,不来自独立验证。对策是 P3:异构模型通道、实质性改写提示词;统计口径上同源票只记一票。注意分寸:异构是**降相关,不是消相关**——不同模型仍共享训练语料与 RLHF 惯例;且异构引入判分口径漂移,合并者需用 rubric 锚定样例做校准。ChatEval(Chan et al., ICLR 2024)在评审者构成上的实验支持同一方向:评审者构成并非无关变量。
 
 ### 2. 说服趋同(病因二:互见中间稿被说服)
 另一种趋同与同源无关:互相看见对方的中间稿,然后被说服——意见在交换中漂移、收敛、彼此背书。其作用范围有严格边界:「断言+重复」这套说服机制只在互相可见的辩论场里生效,隔离了中间稿,它就没有作用面。对策是「断稿路」(P1/P6):先私下出结论,交换只交换论证不交换稿,终票私下重收。
@@ -46,10 +46,10 @@
 勒庞:威望是对个体的麻痹,附和有名望者是群体默认动作(原论仅作命名;采纳情况见第四节)。评审者一旦知道工件出自资深作者或明星模型,评分就系统性偏松。这一行同时收编了真正的群体间暗示:主会话把预期(「我觉得差不多了」)写进下游 dispatch prompt,就是带权威方向的暗示加锚定。锚定的现代实证:LLM 会系统性地顺从上游语气与自信、附和用户或上游的错误立场——谄媚(sycophancy)已有专门研究(Sharma et al. 2023)。对策是 P2 + P4:盲审 + 派发词只含任务事实,编排者最后说话。
 
 ### 8. 断言—重复—传染
-勒庞总结的动员三板斧:不加论证的断言、不断重复、交叉传染;断言越简短越有力。注意:勒庞原意是领袖操控群体的工具,此处借喻管线自发传染,仅取其形(R8)。多 agent 版本:「✅ all passed」正是断言式报告——自信、流畅、零证据,而它是管线中传染性最强的工件。再次强调作用面:这套说服机制只在互相可见的辩论场里生效,被隔离的管线里它没有传播途径。对策是 P5:每个论断必须携带可核查证据(命令输出、file:line、指标),合并时裸绿按无效处理。
+勒庞总结的动员三板斧:不加论证的断言、不断重复、交叉传染;断言越简短越有力。注意:勒庞原意是领袖操控群体的工具,此处借喻管线自发传染,仅取其形。多 agent 版本:「✅ all passed」正是断言式报告——自信、流畅、零证据,而它是管线中传染性最强的工件。再次强调作用面:这套说服机制只在互相可见的辩论场里生效,被隔离的管线里它没有传播途径。对策是 P5:每个论断必须携带可核查证据(命令输出、file:line、指标),合并时裸绿按无效处理。
 
-### 9. 群体渴求幻觉
-勒庞:群体从不需要真理,群体要的是幻觉,谁供给幻觉谁就主导。多 agent 管线里,一致且自信的错误报告比零散的正确意见更有传染力;被安排「走个过场」的红队总能交出走过场的报告。对策是 P6:在制度上给异议留位置——先私下收结论,合并报告必须原文引用异议并说明是否推翻。Emergence of Biased Consensus(2026)记录的正是辩论走向有偏共识的机制。
+### 9. 群体渴求幻象(illusion)
+勒庞:群体从不需要真理,群体要的是幻象(illusion),谁供给幻象谁就主导。多 agent 管线里,一致且自信的错误报告比零散的正确意见更有传染力;被安排「走个过场」的红队总能交出走过场的报告。对策是 P6:在制度上给异议留位置——先私下收结论,合并报告必须原文引用异议并说明是否推翻。Emergence of Biased Consensus(2026)记录的正是辩论走向有偏共识的机制。
 
 ### 10. 群体观念必须具象化才有效
 勒庞:群体能接受的观念必须形象、直观、可直接想象;抽象理论对群体无效。此条仅作叙事呼应,不作为处方依据(采纳说明:未采纳,与 LLM 无关)——「给样例不给形容词」的建议由工程经验独立支撑:指令中的抽象形容词(「严格审查」「仔细一点」)几乎不改变 agent 行为,具体样例、反例与输出格式才改变行为。对策:给 agent 的要求一律落到样例与格式上——playbook.md 的模板正是这一原则的产物。
@@ -85,17 +85,6 @@ Cognition(2025)与本仓库的表面张力,用「两域论」立名即化解:构
 | 群体观念须具象化 | 未采纳为依据(与 LLM 无关);「给样例不给形容词」改由工程经验独立支撑(见第 10 行) |
 | 议会程序 | 部分采纳,但勒庞原论相反——他认为程序挡不住领袖威望;此处仅取程序化启发(见 playbook.md Template C 注记) |
 
-## 五、引用(全库唯一引用清单,与 related-work.md 一致)
+## 五、引用
 
-1. Le Bon, *The Crowd: A Study of the Popular Mind* (1895)
-2. Galton, "Vox Populi", *Nature* (1907)
-3. Condorcet 陪审团定理 (1785);Surowiecki, *The Wisdom of Crowds* (2004)
-4. Du et al., *Improving Factuality and Reasoning through Multiagent Debate* (2023) — arXiv 2305.14325: https://arxiv.org/abs/2305.14325;落地页: https://composable-models.github.io/llm_debate
-5. Smit et al., *Should we be going MAD? A Look at Multi-Agent Debate Strategies for LLMs* (ICML 2024) — https://arxiv.org/abs/2311.17371
-6. *Debate or Vote: Which Yields Better Decisions in Multi-Agent Systems?* (2025) — https://arxiv.org/abs/2508.17536
-7. *Emergence of Biased Consensus in Multi-Agent LLM Debates* (2026) — https://arxiv.org/abs/2608.02827
-8. Cognition, *Don't Build Multi-Agents* (2025) — https://cognition.com/blog/dont-build-multi-agents
-9. Anthropic, *How we built our multi-agent research system* (2025)
-10. Sharma et al., *Towards Understanding Sycophancy in Language Models* (2023) — arXiv 2310.13548: https://arxiv.org/abs/2310.13548
-11. Chan et al., *ChatEval: Towards Better LLM-based Evaluators through Multi-Agent Debate* (ICLR 2024) — arXiv 2308.07201: https://arxiv.org/abs/2308.07201
-12. McPhail, *The Myth of the Madding Crowd* (1991);Postmes & Spears,去个体化元分析,*Psychological Bulletin* (1998)
+完整引用清单(单一可信来源)见 [references/related-work.md](references/related-work.md);本文件仅保留随文引用。

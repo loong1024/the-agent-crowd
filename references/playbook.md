@@ -2,7 +2,7 @@
 
 配合 SKILL.md 的四闸门与七原则使用。四个模板覆盖多 agent 判断管线的四个环节:派发(A)、交接(B)、辩论(C)、合并(D)。占位符用 `<尖括号>` 标出,替换后即可粘贴使用。模板正文用英文(多数 LLM 通道对英文指令最稳),说明用中文。
 
-闸门内豁免(R1.5):按 claim 风险分级——重跑成本低的小管线用轻量契约(口头置信 + 抽查);五行契约与全套面板只留给烧到别人的裁决。
+闸门内豁免:按主张(claim)风险分级——重跑成本低的小管线用轻量契约(口头置信 + 抽查);五行契约与全套面板只留给烧到别人的裁决。
 
 ## Template A — 冷审派发(Cold Review Dispatch)
 
@@ -15,7 +15,7 @@ Task: Review <artifact-path> against <spec-or-requirement>.
 Scope: <exact scope>. Nothing outside this scope is in scope.
 
 Rules:
-1. Judge the artifact only. Any author, model, or framework identity you think you can infer is NOT part of your input — ignore it.
+1. Do not infer or use author, model, or framework identity.
 2. You DO receive the spec and intent / design-tradeoff documents: behavior that contradicts documented intent is a bug; behavior that follows a recorded tradeoff is not. Do not report recorded tradeoffs as findings.
 3. Every finding must carry evidence: a file:line reference, a command output, or a metric. No evidence, no finding.
 4. Do not assume anything works that you have not seen run. To verify behavior, run: <commands-to-run>
@@ -35,7 +35,7 @@ Output format (mandatory):
 
 ## Template B — 交接契约(Handoff Contract)
 
-对应 P1 / P3 / P6:任何 agent 之间的结论传递必须套这个五行块;没有 Evidence 的 Claim 自动降级 unverified,下游不得当作事实使用。
+对应 P1 / P3 / P6:任何 agent 之间的结论传递必须套这个五行块;没有 Evidence 的主张(Claim 字段)自动降级 unverified,下游不得当作事实使用。
 
 ```text
 Claim:      <one-sentence assertion>
@@ -46,10 +46,10 @@ Owner:      <named agent accountable for this claim — audit and escalation go 
 ```
 
 要点:
-- Evidence 为空时,该 Claim 必须标记为 `unverified`;
+- Evidence 为空时,该主张必须标记为 `unverified`;
 - Source 必填:合并者靠它识别同源双票(P3);
 - Owner(署名)必填:结论可追责到具体 agent——这是对去个体化 / 责任稀释的直接处方(P6);
-- 下游收到后应抽查 Evidence,而不是原样转发 Claim(P5)。
+- 下游收到后应抽查 Evidence,而不是原样转发主张(P5)。
 
 ## Template C — 辩论主持(Debate Moderation)
 
@@ -77,7 +77,7 @@ The merged report must quote every dissenting position verbatim and state why it
 ```
 
 要点:
-- 注(出处勘误,R7):勒庞对议会的原论相反——他认为程序挡不住领袖威望;此处仅取程序化启发(写票在先、抽签定序),不代表勒庞主张;
+- 注(出处勘误):勒庞对议会的原论相反——他认为程序挡不住领袖威望;此处仅取程序化启发(写票在先、抽签定序),不代表勒庞主张;
 - Phase 1 是 Condorcet 条件的直接落地:独立作答;
 - Phase 2 只交换论证、不交换结论倾向,压低感染与威望效应;
 - Phase 3 保留辩论的价值、隔离锚定;「必引异议」把少数派写进制度。
@@ -108,4 +108,4 @@ If any answer fails, the merge is invalid: fix it, then re-run this checklist.
 | 4 | 评审质量跟着作者走,不跟工件走 | 威望效应:身份信息使评审系统性偏松或偏严(Red Flag 4) | P4+Template A:剥离作者、模型与历史结论后再派发(保留 spec 与 intent 文档) |
 | 5 | 辩论结论漂向最先或最大声的发言者 | 感染+威望:先发言者锚定全场(Red Flag 5) | P6+Template C:先私下结论,只交换论证不交换倾向,终票私下重收 |
 | 6 | 一个错误穿过 N 层评审仍存活 | 各层共享同一盲区——同一处错复制了 N 份(Red Flag 6) | P3:关键层换不同模型通道复评;用 Template A 冷审取代层层互审 |
-| 7 | 报告每经过一跳就更自信 | 裸结论被当作事实传递,置信度沿链虚增(Red Flag 7) | P1+Template B:交接契约强制 Evidence;无 Evidence 的 Claim 降级 unverified |
+| 7 | 报告每经过一跳就更自信 | 裸结论被当作事实传递,置信度沿链虚增(Red Flag 7) | P1+Template B:交接契约强制 Evidence;无 Evidence 的主张降级 unverified |

@@ -1,6 +1,6 @@
 ---
 name: the-agent-crowd
-description: Gate discipline for high-stakes agent verdicts, built on LLM empirics (sycophancy, anchoring, correlated errors, context contamination) and aggregation theory (Galton / Condorcet / Surowiecki); crowd psychology supplies the naming metaphor only. Use at acceptance gates (ship / no-ship), decision gates (spec sign-off, merge to main, architecture choice), external gates (public release, spending, data deletion, outbound content), or trust gates (about to act on an agent team's collectively confident conclusion); when dispatching reviewer/critic agents at one of these gates; or when an agent team converged on a confidently wrong answer. Triggers: 验收, 发布, 合并, 拍板, 架构选型, review dispatch, groupthink, 乌合之众, 从众, 独立评审.
+description: Gate discipline for high-stakes agent verdicts, built on LLM empirics (sycophancy, anchoring, correlated errors, context contamination) and aggregation theory (Galton / Condorcet / Surowiecki); crowd psychology supplies the naming metaphor and failure narrative, never its mechanisms. Use at acceptance gates (ship / no-ship), decision gates (spec sign-off, merge to main, architecture choice), external gates (public release, spending, data deletion, outbound content), or trust gates (about to act on an agent team's collectively confident conclusion); when dispatching reviewer/critic agents at one of these gates; or when an agent team converged on a confidently wrong answer. Triggers: 验收, 发布, 合并, 拍板, 架构选型, review dispatch, groupthink, 乌合之众, 从众, 独立评审.
 ---
 
 # The Agent Crowd
@@ -42,7 +42,7 @@ something other than a re-run:
 or does it burn someone else? One more run → this skill stays off. Burns
 someone else → keep reading.**
 
-Exemption inside the gates (claim-risk tiering): where re-runs are cheap and
+Exemption inside the gates — tier by claim risk: where re-runs are cheap and
 the claim is small, use lightweight contracts — verbal confidence plus spot
 checks. The five-line handoff contract and the full panels are reserved for
 verdicts that burn someone else.
@@ -115,7 +115,7 @@ Smell: a debate where everyone converged and no minority position is recorded.
 3. **Handoff**: every inter-agent claim uses the Claim/Evidence/Confidence/
    Source/Owner contract.
 4. **Merge**: the orchestrator merges verdicts, quotes dissent, and never
-   issues a bare green.
+   issues a bare green (a pass with no traceable evidence).
 
 ## Red Flags — you are running a mob, not a team
 

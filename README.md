@@ -6,8 +6,6 @@
 
 English | [简体中文](README.zh.md)
 
-<!-- Status: draft. English copy pending professional review; README.zh.md is the canonical full version. -->
-
 ## When to reach for this: the four gates
 
 This skill exists only where a wrong verdict burns something other than a re-run.
@@ -25,9 +23,9 @@ Inside the gates, tier by claim risk: cheap-to-rerun small pipelines use lightwe
 
 ## Three-symptom quick check
 
-1. Outputs from different agents are near-identical in wording.
+1. Near-identical wording across agents — especially when they repeat the same mistake.
 2. All-green reports with no evidence trail.
-3. Homogeneous language style across agents.
+3. Reports grow more confident with each hop — without adding new evidence.
 
 Hit any one of the three and your agent legion is already turning into a mob.
 
@@ -35,7 +33,7 @@ Hit any one of the three and your agent legion is already turning into a mob.
 
 The name is borrowed from Gustave Le Bon's *The Crowd* (1895): his portraits of crowd failure — personal judgment collapses, emotion amplifies, errors are contagious, the most fluent speaker wins — have real counterparts in multi-agent systems. But the prescriptions here are not derived from him. The working evidence is LLM empirics — sycophancy, anchoring, correlated errors, context contamination — plus modern aggregation theory (Galton 1907; Condorcet 1785; Surowiecki 2004). Le Bon's mechanism claims about human crowds were revised by modern research (McPhail 1991; Postmes & Spears 1998); we borrow the failure narrative, never his mechanisms, conclusions, or politics.
 
-The failure has a modern name: correlated errors. N agents launched with the same prompt and the same model are one judge with N copies of its errors — more agents do not mean more accuracy. Debate can make it worse: agents converge on a confidently biased consensus instead of correcting each other. The documented antidote is aggregation over independent judgments: Galton's 1907 crowd nailed the ox weight because the guesses were independent; Condorcet's jury theorem shows why independence is the load-bearing assumption; Surowiecki names independence as the line between a mob and a wise crowd.
+The failure has a modern name: correlated errors. N agents launched with the same prompt and the same model are one judge with N copies of its errors — more agents do not mean more accuracy. Debate can make it worse: agents converge on a confidently biased consensus instead of correcting each other. The documented antidote is aggregation over independent judgments: Galton's 1907 ox-weighing crowd came within a pound of the true weight; Condorcet's jury theorem shows why independence is the load-bearing assumption; Surowiecki names independence as the line between a mob and a wise crowd.
 
 Hence the two-domain doctrine: **Isolate for judgment. Share for construction.** Construction work (writing code, drafting docs) benefits from shared context; judgment work (reviewing, deciding, voting) collapses when judges share context. Everything here operationalizes that single distinction — and it is enforced only at the four gates above; everywhere else, run free.
 
@@ -57,10 +55,10 @@ Full mapping from crowd mechanics to engineering countermeasures, with citations
 
 ### Claude Code
 
-Copy the skill into a skills directory:
+Copy the whole `the-agent-crowd/` directory — it must include `SKILL.md` together with `references/`; copying `SKILL.md` alone breaks the relative links.
 
-- personal: `~/.claude/skills/the-agent-crowd/SKILL.md`
-- project: `<your-project>/.claude/skills/the-agent-crowd/SKILL.md` — commit it with the project so every teammate's and every agent session inherits the discipline.
+- project (recommended): `<your-project>/.claude/skills/the-agent-crowd/` — commit it with the project so every session and every parallel subagent inherits the discipline; teammates get it on clone.
+- personal: `~/.claude/skills/the-agent-crowd/` — applies across all your projects.
 
 The skill triggers at the four gates: acceptance sign-offs, decisions and merges, external releases, and moments of trusting an agent team's confident collective conclusion — or whenever an agent team converged on a confidently wrong answer.
 
@@ -88,14 +86,14 @@ Orchestration mechanics (parallel waves, dispatch, hooks) are well served by exi
 1. Le Bon, *The Crowd: A Study of the Popular Mind* (1895)
 2. Galton, "Vox Populi", *Nature* (1907)
 3. Condorcet jury theorem (1785); Surowiecki, *The Wisdom of Crowds* (2004)
-4. Du et al., *Improving Factuality and Reasoning through Multiagent Debate* (2023) — arXiv 2305.14325, https://arxiv.org/abs/2305.14325; landing page: https://composable-models.github.io/llm_debate
+4. Du et al., *Improving Factuality and Reasoning through Multiagent Debate* (2023) — arXiv 2305.14325 — https://arxiv.org/abs/2305.14325 — landing page: https://composable-models.github.io/llm_debate
 5. Smit et al., *Should we be going MAD? A Look at Multi-Agent Debate Strategies for LLMs* (ICML 2024) — https://arxiv.org/abs/2311.17371
 6. *Debate or Vote: Which Yields Better Decisions in Multi-Agent Systems?* (2025) — https://arxiv.org/abs/2508.17536
 7. *Emergence of Biased Consensus in Multi-Agent LLM Debates* (2026) — https://arxiv.org/abs/2608.02827
 8. Cognition, *Don't Build Multi-Agents* (2025) — https://cognition.com/blog/dont-build-multi-agents
 9. Anthropic, *How we built our multi-agent research system* (2025)
-10. Sharma et al., *Towards Understanding Sycophancy in Language Models* (2023) — arXiv 2310.13548, https://arxiv.org/abs/2310.13548
-11. Chan et al., *ChatEval: Towards Better LLM-based Evaluators through Multi-Agent Debate* (ICLR 2024) — arXiv 2308.07201, https://arxiv.org/abs/2308.07201
+10. Sharma et al., *Towards Understanding Sycophancy in Language Models* (2023) — arXiv 2310.13548 — https://arxiv.org/abs/2310.13548
+11. Chan et al., *ChatEval: Towards Better LLM-based Evaluators through Multi-Agent Debate* (ICLR 2024) — arXiv 2308.07201 — https://arxiv.org/abs/2308.07201
 12. McPhail, *The Myth of the Madding Crowd* (1991); Postmes & Spears, deindividuation meta-analysis, *Psychological Bulletin* (1998)
 
 ## Disclaimer

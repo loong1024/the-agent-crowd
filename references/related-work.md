@@ -17,14 +17,14 @@
 1. Le Bon, *The Crowd: A Study of the Popular Mind* (1895)
 2. Galton, "Vox Populi", *Nature* (1907)
 3. Condorcet 陪审团定理 (1785);Surowiecki, *The Wisdom of Crowds* (2004)
-4. Du et al., *Improving Factuality and Reasoning through Multiagent Debate* (2023) — arXiv 2305.14325: https://arxiv.org/abs/2305.14325;落地页: https://composable-models.github.io/llm_debate
+4. Du et al., *Improving Factuality and Reasoning through Multiagent Debate* (2023) — arXiv 2305.14325 — https://arxiv.org/abs/2305.14325 — 落地页: https://composable-models.github.io/llm_debate
 5. Smit et al., *Should we be going MAD? A Look at Multi-Agent Debate Strategies for LLMs* (ICML 2024) — https://arxiv.org/abs/2311.17371
 6. *Debate or Vote: Which Yields Better Decisions in Multi-Agent Systems?* (2025) — https://arxiv.org/abs/2508.17536
 7. *Emergence of Biased Consensus in Multi-Agent LLM Debates* (2026) — https://arxiv.org/abs/2608.02827
 8. Cognition, *Don't Build Multi-Agents* (2025) — https://cognition.com/blog/dont-build-multi-agents
 9. Anthropic, *How we built our multi-agent research system* (2025)
-10. Sharma et al., *Towards Understanding Sycophancy in Language Models* (2023) — arXiv 2310.13548: https://arxiv.org/abs/2310.13548
-11. Chan et al., *ChatEval: Towards Better LLM-based Evaluators through Multi-Agent Debate* (ICLR 2024) — arXiv 2308.07201: https://arxiv.org/abs/2308.07201
+10. Sharma et al., *Towards Understanding Sycophancy in Language Models* (2023) — arXiv 2310.13548 — https://arxiv.org/abs/2310.13548
+11. Chan et al., *ChatEval: Towards Better LLM-based Evaluators through Multi-Agent Debate* (ICLR 2024) — arXiv 2308.07201 — https://arxiv.org/abs/2308.07201
 12. McPhail, *The Myth of the Madding Crowd* (1991);Postmes & Spears,去个体化元分析,*Psychological Bulletin* (1998)
 
-此清单即本仓库的全部引用来源:principles.md 的「依据」列、README 的 Sources、示例中的推理均出自以上条目,不另引其他文献。
+此清单即本仓库的唯一引用清单(principles.md、README 与示例均指向此处,不另设副本),不另引其他文献。

@@ -1,6 +1,6 @@
 # Playbook:可复制粘贴的派发模板与反模式表
 
-配合 SKILL.md 的四闸门与七原则使用。四个模板覆盖多 agent 判断管线的四个环节:派发(A)、交接(B)、辩论(C)、合并(D)。占位符用 `<尖括号>` 标出,替换后即可粘贴使用。模板正文用英文(多数 LLM 通道对英文指令最稳),说明用中文。
+配合 SKILL.md 的四闸门与七原则使用。五个模板覆盖五类环节:冷审派发(A)、五行交接契约(B)、断稿辩论主持(C)、合并(D)、MBO 构建派发(E,构建域)。占位符用 `<尖括号>` 标出,替换后即可粘贴使用。模板正文用英文(多数 LLM 通道对英文指令最稳),说明用中文。
 
 闸门内豁免:按主张(claim)风险分级——重跑成本低的小管线用轻量契约(口头置信 + 抽查);五行契约与全套面板只留给烧到别人的裁决。
 
@@ -84,21 +84,22 @@ The merged report must quote every dissenting position verbatim and state why it
 
 ## Template D — 合并清单(Merge Checklist)
 
-对应 P0 / P1 / P2 / P5 / P6:合并者(通常是编排者)在发布合并结论前的五问。
+对应 P0 / P1 / P2 / P5 / P6:合并者(通常是编排者)在发布合并结论前的六问。
 
 ```text
-Before publishing the merged verdict, answer all five questions:
+Before publishing the merged verdict, answer all six questions:
 
 1. Bare green?  Every pass must trace to a command output or file:line. Any bare green invalidates the merge.
 2. Dissent quoted?  Every minority position must be quoted, with an explicit overrule-or-adopt reason.
 3. Unsourced conclusions?  Any claim without a Source line goes back to its producer for evidence.
 4. Same-source double votes?  Agents sharing a model or a materially identical prompt count as ONE vote. Recount.
 5. Verdict after collection?  The orchestrator's own opinion may only be disclosed after all independent verdicts were collected. If it leaked earlier, re-dispatch.
+6. Boundary conditions written?  (What would make this call wrong?)
 
 If any answer fails, the merge is invalid: fix it, then re-run this checklist.
 ```
 
-## Template E — MBO worker dispatch(构建域)
+## Template E——MBO 构建派发
 
 对应 drucker.md D1(MBO 目标管理与自我控制):控制主体是执行 agent 本人——给目标、标准与自查度量,不给步骤;构建域专用(裁决域请走 Template A 冷审)。
 

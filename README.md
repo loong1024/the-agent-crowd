@@ -53,13 +53,14 @@ Hit any one of these and your agent team is already becoming a mob.
 
 ## III. What's Inside
 
-the-agent-crowd is a **Claude Code skill + a framework-agnostic multi-agent management methodology** (equally applicable to CrewAI / LangGraph / AutoGen / custom orchestration). Five pieces:
+the-agent-crowd is a **Claude Code skill + a framework-agnostic multi-agent management methodology** (equally applicable to CrewAI / LangGraph / AutoGen / custom orchestration). Six pieces:
 
 1. **SKILL.md** — the two-domain doctrine, the seven principles (P0 Independence before quantity / P1 Quarantine verdicts / P2 The orchestrator speaks last / P3 Heterogeneity over homogeneity / P4 Blind the reviewer / P5 Evidence over fluency / P6 Keep the dissent), the four gates, and seven Red Flags that your team has become a mob (the README adds the three-symptom quick check)
-2. **playbook** — 4 copy-paste dispatch templates: cold-review dispatch / the Claim/Evidence/Confidence/Source/Owner handoff contract / debate moderation without shared drafts / the merge master checklist
-3. **principles** — a complete mapping of Le Bon's ideas × agent failure modes × engineering prescriptions; every prescription is grounded in LLM empirics and aggregation theory — see references/principles.md
-4. **experiment protocol** — a reproducible experiment protocol covering three isolation levels + a 2×2 reviewer configuration (protocol defined, results pending)
-5. **before-after cases** — a two-column comparison of the same bug (a design hypothesis; the gain awaits validation by the protocol's second experiment)
+2. **playbook** — 5 copy-paste dispatch templates (4 judgment + 1 construction): cold-review dispatch / the Claim/Evidence/Confidence/Source/Owner handoff contract / debate moderation without shared drafts / the merge master checklist / the MBO construction dispatch
+3. **Drucker reference** — organizational engineering for the construction side: MBO dispatch, federal squads, dissent-first decisions — see references/drucker.md
+4. **principles** — a complete mapping of Le Bon's ideas × agent failure modes × engineering prescriptions; every prescription is grounded in LLM empirics and aggregation theory — see references/principles.md
+5. **experiment protocol** — a reproducible experiment protocol covering three isolation levels + a 2×2 reviewer configuration (protocol defined, results pending)
+6. **before-after cases** — a two-column comparison of the same bug (a design hypothesis; the gain awaits validation by the protocol's second experiment)
 
 ## IV. Activation
 
@@ -160,13 +161,14 @@ MIT License
 
 ## 三、skill 整体介绍
 
-the-agent-crowd 是一个 **Claude Code skill + 框架无关的多 agent 管理方法论**(CrewAI / LangGraph / AutoGen / 自研编排同样适用)。五件内容:
+the-agent-crowd 是一个 **Claude Code skill + 框架无关的多 agent 管理方法论**(CrewAI / LangGraph / AutoGen / 自研编排同样适用)。六件内容:
 
 1. **SKILL.md**——两域论纲领、七原则(P0 独立性先于数量 / P1 结论隔离 / P2 编排者最后说话 / P3 异质优于同质 / P4 盲审 / P5 证据优于流畅 / P6 保留异议)、四闸门、七条「军团已乌合之众化」信号(Red Flags,README 另附三症状速查)
-2. **playbook**——4 个可复制粘贴的派发词模板:冷审派发 / 五行交接契约 / 断稿辩论主持 / 合并五问
-3. **principles**——勒庞理念 × agent 失效模式 × 工程处方完整对照,处方依据一律挂 LLM 实证与聚合理论,详见 references/principles.md
-4. **experiment protocol**——三档隔离度 + 评审配置 2×2 的可复现实验协议(协议已定义,结果待跑)
-5. **before-after 案例**——同一个 bug 的两栏对照(设计假设,增益待协议第二实验验证)
+2. **playbook**——5 个可复制粘贴的派发词模板(4 判断 + 1 构建):冷审派发 / 五行交接契约 / 断稿辩论主持 / 合并五问 / MBO 构建派发
+3. **德鲁克参考**——建设侧的组织工程学:MBO 派发、联邦编队、异议先行决策,详见 references/drucker.md
+4. **principles**——勒庞理念 × agent 失效模式 × 工程处方完整对照,处方依据一律挂 LLM 实证与聚合理论,详见 references/principles.md
+5. **experiment protocol**——三档隔离度 + 评审配置 2×2 的可复现实验协议(协议已定义,结果待跑)
+6. **before-after 案例**——同一个 bug 的两栏对照(设计假设,增益待协议第二实验验证)
 
 ## 四、启用方式
 

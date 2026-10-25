@@ -114,7 +114,7 @@ Smell: a debate where everyone converged and no minority position is recorded.
    construction? Are the judges zero-context? Did any orchestrator opinion
    leak into a dispatch? Do two same-model agents share a vote? Can dissent
    be recorded?
-2. **Dispatch**: use an MBO dispatch — objective + success criteria + a self-checkable measure; give step-by-step instructions only where judgment is not wanted (see references/drucker.md D1 / playbook Template E).
+2. **Dispatch**: judgment dispatches follow Template A (cold-review); construction dispatches follow Template E (MBO) — objective + success criteria + a self-checkable measure; step-by-step instructions only where judgment is not wanted
 3. **Handoff**: every inter-agent claim uses the Claim/Evidence/Confidence/
    Source/Owner contract.
 4. **Merge**: the orchestrator merges verdicts, quotes dissent, and never

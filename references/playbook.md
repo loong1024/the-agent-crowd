@@ -32,18 +32,20 @@ Output format (mandatory):
 
 ## Template B — 交接契约(Handoff Contract)
 
-对应 P1 / P3:任何 agent 之间的结论传递必须套这个四行块;没有 Evidence 的 Claim 自动降级 unverified,下游不得当作事实使用。
+对应 P1 / P3 / P6:任何 agent 之间的结论传递必须套这个五行块;没有 Evidence 的 Claim 自动降级 unverified,下游不得当作事实使用。
 
 ```text
 Claim:      <one-sentence assertion>
 Evidence:   <command output | file:line | metric — something a third party can re-run to confirm>
 Confidence: high | medium | low
 Source:     <which agent produced this, from which artifact>
+Owner:      <named agent accountable for this claim — audit and escalation go here>
 ```
 
 要点:
 - Evidence 为空时,该 Claim 必须标记为 `unverified`;
 - Source 必填:合并者靠它识别同源双票(P3);
+- Owner(署名)必填:结论可追责到具体 agent——这是对去个体化 / 责任稀释的直接处方(P6);
 - 下游收到后应抽查 Evidence,而不是原样转发 Claim(P5)。
 
 ## Template C — 辩论主持(Debate Moderation)
@@ -52,6 +54,10 @@ Source:     <which agent produced this, from which artifact>
 
 ```text
 This is a moderated debate with N agents. Follow the phases strictly.
+
+Governance (apply before Phase 1):
+- Every agent writes its verdict PRIVATELY and submits it before the exchange phase opens. A verdict written after seeing others' drafts is invalid.
+- Speaking order in every exchange round is randomized (draw lots); no agent may open or close a round by default.
 
 Phase 1 — Private verdicts
 Each agent writes its own conclusion and evidence WITHOUT seeing any other agent's output. Submit before any exchange happens.
@@ -68,6 +74,7 @@ The merged report must quote every dissenting position verbatim and state why it
 ```
 
 要点:
+- Governance 两句治理细节源自勒庞对议会式群体议事的描述:群体议事若无固定程序,先发言者与雄辩者就接管全场;写票在先、抽签定序,正是把「程序」本身当作锚定的对策;
 - Phase 1 是 Condorcet 条件的直接落地:独立作答;
 - Phase 2 只交换论证、不交换结论倾向,压低感染与威望效应;
 - Phase 3 保留辩论的价值、隔离锚定;「必引异议」把少数派写进制度。

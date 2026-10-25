@@ -75,8 +75,8 @@ Smell: a debate where everyone converged and no minority position is recorded.
    leak into a dispatch? Do two same-model agents share a vote? Can dissent
    be recorded?
 2. **Dispatch**: use templates in references/playbook.md.
-3. **Handoff**: every inter-agent claim uses the Claim/Evidence/Confidence/Source
-   contract.
+3. **Handoff**: every inter-agent claim uses the Claim/Evidence/Confidence/
+   Source/Owner contract.
 4. **Merge**: the orchestrator merges verdicts, quotes dissent, and never
    issues a bare green.
 
@@ -103,4 +103,5 @@ Smell: a debate where everyone converged and no minority position is recorded.
 - [references/principles.md](references/principles.md) — full mapping, with citations
 - [references/playbook.md](references/playbook.md) — copy-paste dispatch templates
 - [references/related-work.md](references/related-work.md) — survey and research
+- [experiments/protocol.md](experiments/protocol.md) — minimal reproducibility protocol (defined; results pending)
 - [examples/before-after.md](examples/before-after.md) — worked example

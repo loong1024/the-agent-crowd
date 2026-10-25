@@ -6,6 +6,14 @@ English | [简体中文](README.zh.md)
 
 <!-- Status: draft. English copy pending professional review; README.zh.md is the canonical full version. -->
 
+## Three-symptom quick check
+
+1. Outputs from different agents are near-identical in wording.
+2. All-green reports with no evidence trail.
+3. Homogeneous language style across agents.
+
+Hit any one of the three and your agent legion is already turning into a mob.
+
 ## What & why
 
 In 1895, Gustave Le Bon watched individuals dissolve into crowds and described the mechanics: personal judgment collapses, emotion amplifies, errors are contagious, and the most fluent speaker wins. LLM agent teams recreate every one of those mechanics — without humanity's excuses. Agents do not tire, do not lose face, and literally run on suggestion. A multi-agent system without engineered independence is not an ensemble; it is one mind holding N copies of its own biases.
@@ -45,6 +53,7 @@ Read `references/` as a methodology; there is no runtime dependency:
 
 - [references/principles.md](references/principles.md) — the conceptual mapping and the citations
 - [references/playbook.md](references/playbook.md) — copy-paste dispatch templates, handoff contract, debate moderation, merge checklist
+- [experiments/protocol.md](experiments/protocol.md) — minimal reproducibility protocol to verify or falsify the mechanism claims (protocol defined; results pending)
 - [examples/before-after.md](examples/before-after.md) — a worked case for calibrating your pipeline
 
 A good first step: run the Pre-flight questions in [SKILL.md](SKILL.md) before your next multi-agent dispatch.
@@ -64,8 +73,8 @@ Orchestration mechanics (parallel waves, dispatch, hooks) are well served by exi
 1. Le Bon, *The Crowd: A Study of the Popular Mind* (1895)
 2. Galton, "Vox Populi", *Nature* (1907)
 3. Condorcet jury theorem (1785); Surowiecki, *The Wisdom of Crowds* (2004)
-4. Du et al., *Improving Factuality and Reasoning through Multiagent Debate* (2023) — https://composable-models.github.io/llm_debate
-5. Smit et al., *Should We Be Going MAD? A Look at Multi-Agent Debate Strategies* (ICML 2024) — https://arxiv.org/abs/2402.05129
+4. Du et al., *Improving Factuality and Reasoning through Multiagent Debate* (2023) — arXiv 2305.14325, https://arxiv.org/abs/2305.14325; landing page: https://composable-models.github.io/llm_debate
+5. Smit et al., *Should we be going MAD? A Look at Multi-Agent Debate Strategies for LLMs* (ICML 2024) — https://arxiv.org/abs/2311.17371
 6. *Debate or Vote: Which Yields Better Decisions in Multi-Agent Systems?* (2025) — https://arxiv.org/abs/2508.17536
 7. *Emergence of Biased Consensus in Multi-Agent LLM Debates* (2026) — https://arxiv.org/abs/2608.02827
 8. Cognition, *Don't Build Multi-Agents* (2025) — https://cognition.com/blog/dont-build-multi-agents

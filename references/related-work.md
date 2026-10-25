@@ -17,8 +17,8 @@
 1. Le Bon, *The Crowd: A Study of the Popular Mind* (1895)
 2. Galton, "Vox Populi", *Nature* (1907)
 3. Condorcet 陪审团定理 (1785);Surowiecki, *The Wisdom of Crowds* (2004)
-4. Du et al., *Improving Factuality and Reasoning through Multiagent Debate* (2023) — https://composable-models.github.io/llm_debate
-5. Smit et al., *Should We Be Going MAD? A Look at Multi-Agent Debate Strategies* (ICML 2024) — https://arxiv.org/abs/2402.05129
+4. Du et al., *Improving Factuality and Reasoning through Multiagent Debate* (2023) — arXiv 2305.14325: https://arxiv.org/abs/2305.14325;落地页: https://composable-models.github.io/llm_debate
+5. Smit et al., *Should we be going MAD? A Look at Multi-Agent Debate Strategies for LLMs* (ICML 2024) — https://arxiv.org/abs/2311.17371
 6. *Debate or Vote: Which Yields Better Decisions in Multi-Agent Systems?* (2025) — https://arxiv.org/abs/2508.17536
 7. *Emergence of Biased Consensus in Multi-Agent LLM Debates* (2026) — https://arxiv.org/abs/2608.02827
 8. Cognition, *Don't Build Multi-Agents* (2025) — https://cognition.com/blog/dont-build-multi-agents

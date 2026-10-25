@@ -4,6 +4,14 @@
 
 [English](README.md) | 简体中文
 
+## 三症状快速自检
+
+1. 不同 agent 的输出措辞高度雷同。
+2. 全绿报告、无证据链。
+3. 语言风格同质化。
+
+命中任意一条,你的 agent 军团已在乌合之众化。
+
 ## 这是什么,为什么需要
 
 1895 年,古斯塔夫·勒庞观察个体消融进群体之后的机制:个人判断崩溃、情绪放大、错误传染、最流利的发言者获胜。LLM agent 团队把这套机制逐条复现——而且没有人类的借口:agent 不会疲劳、不会丢面子,并且字面意义上「靠暗示驱动」。没有工程化独立性的多 agent 系统不是集成(ensemble),而是一个大脑持有自己偏见的 N 份拷贝。
@@ -43,6 +51,7 @@
 
 - [references/principles.md](references/principles.md) — 概念映射与文献依据
 - [references/playbook.md](references/playbook.md) — 可直接粘贴进编排器提示词的派发模板、交接契约、辩论主持、合并清单
+- [experiments/protocol.md](experiments/protocol.md) — 最小复现协议:验证或证伪本仓库的机制主张(协议已定义,结果待跑)
 - [examples/before-after.md](examples/before-after.md) — 用于校准管线的对照案例
 
 建议的第一步:在你下一次多 agent 派发之前,先过一遍 [SKILL.md](SKILL.md) 里的 Pre-flight 问题。
@@ -62,8 +71,8 @@
 1. Le Bon, *The Crowd: A Study of the Popular Mind* (1895)
 2. Galton, "Vox Populi", *Nature* (1907)
 3. Condorcet 陪审团定理 (1785);Surowiecki, *The Wisdom of Crowds* (2004)
-4. Du et al., *Improving Factuality and Reasoning through Multiagent Debate* (2023) — https://composable-models.github.io/llm_debate
-5. Smit et al., *Should We Be Going MAD? A Look at Multi-Agent Debate Strategies* (ICML 2024) — https://arxiv.org/abs/2402.05129
+4. Du et al., *Improving Factuality and Reasoning through Multiagent Debate* (2023) — arXiv 2305.14325,https://arxiv.org/abs/2305.14325;落地页:https://composable-models.github.io/llm_debate
+5. Smit et al., *Should we be going MAD? A Look at Multi-Agent Debate Strategies for LLMs* (ICML 2024) — https://arxiv.org/abs/2311.17371
 6. *Debate or Vote: Which Yields Better Decisions in Multi-Agent Systems?* (2025) — https://arxiv.org/abs/2508.17536
 7. *Emergence of Biased Consensus in Multi-Agent LLM Debates* (2026) — https://arxiv.org/abs/2608.02827
 8. Cognition, *Don't Build Multi-Agents* (2025) — https://cognition.com/blog/dont-build-multi-agents

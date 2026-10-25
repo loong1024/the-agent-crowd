@@ -4,8 +4,6 @@
 > *A Study of the Popular Mind, for your agent teams.* Named after Gustave Le Bon's *The Crowd* (1895).
 
 
-<!-- EN What&why rewrite pending (DeepSeek batch): reposition as dual-source (Le Bon defense + Drucker construction) -->
-
 ## I. Why The Crowd
 
 In 1895, Gustave Le Bon published *The Crowd: A Study of the Popular Mind*, answering a question nobody took seriously at the time: **why does a smart person turn stupid the moment they join a group?** His list of ideas became the foundation of crowd psychology:
@@ -19,6 +17,19 @@ In 1895, Gustave Le Bon published *The Crowd: A Study of the Popular Mind*, answ
 - **Anonymity and the disappearance of responsibility** — if nobody signs their name, nobody is accountable
 
 Now look at your agent team: N instances of the same model, each seeing the others' intermediate drafts, no fatigue and no ego, naturally deferential in tone — **this is a purer crowd than any human group.** Every crowd pathology Le Bon described has, here, a more direct transmission path that can be cut off by engineering. Multiple agents are not inherently stronger than one: it is a coin flip between "N copies of one mind" and "a real team," and which side comes up depends on whether you have installed independence discipline.
+
+### The other half: Peter Drucker's construction side
+
+Le Bon explains why adjudication collapses. **Peter Drucker — the organization engineer who spent a lifetime on "how ordinary people produce extraordinary results" — supplies the other half: how to organize a team so that it produces at all.** This system is designed as the union of the two. Group psychology provides the defense (why adjudication must be isolated); Drucker's organization engineering provides the construction (how work is dispatched and organized). The two-domain doctrine is not decoration — each half covers what the other cannot.
+
+Four points, each in a sentence or two:
+
+1. **Objective-based dispatch** (*The Practice of Management*, 1954): give every builder an objective, success criteria, and self-checkable metrics — not steps. Honest note: an agent cannot negotiate its objectives the way an employee can; the only part of MBO that survives is the **self-check** — move the inspection forward, to the executor. This is Template E.
+2. **Decide only after dissent** (*The Effective Executive*, 1966): no decision without disagreement first. This is the same lever as **P6 Keep the dissent**, viewed from the other end.
+3. **Federal formation** (*Concept of the Corporation*, 1946): the center owns policy — the handoff contract, interfaces, red lines, adjudication grading — while each formation owns its deliverable and is accountable to a **named Owner**. Consequences ultimately land on humans.
+4. **The information-based organization** (1988): no relaying agents in the middle; information reaches the decision-maker directly. The shared score is the **handoff contract**.
+
+The caveat stands: the evidence base remains LLM empirics and aggregation theory; the management prescriptions are design analogies awaiting measurement. Defense comes from isolation; construction comes from objectives, federal formation, and a shared score.
 
 ## II. The Corresponding Agent Management Reference Patterns
 
@@ -129,6 +140,19 @@ MIT License
 - **匿名与责任消失**——没人署名,就没人负责
 
 现在看你的 agent 军团:同一个模型的 N 个实例、互相看得见中间稿、没有疲劳没有面子、天生顺从语气——**这是一个比任何人类群体都更纯粹的群体**。勒庞笔下的每种群体病,在这里都有一条更直接、且可被工程切断的传染路径。多 agent 不是天然强于单体:它是「一个头脑的 N 份复印件」与「真正的军团」之间的一次掷硬币,掷出哪面,取决于你有没有装独立性纪律。
+
+### 另一半:彼得·德鲁克的建设侧
+
+勒庞解释裁决为什么崩坏。**彼得·德鲁克——组织工程师,毕生研究「平凡人如何做出不平凡的成果」——补上另一半:如何组织团队让它产出。**本体系由两者结合设计:群体心理学提供防御(裁决为何必须隔离);德鲁克组织工程学提供建设(工作如何派发与组织)。两域论不是装饰——每一半都覆盖另一半够不到的地方。
+
+四个要点,各一两句:
+
+1. **目标派发**(《管理的实践》,1954):给每个构建者目标+成功标准+可自查度量——不给步骤。诚实注:agent 无法像员工那样协商目标;MBO 能存活的只有 **self-check**——把检查前移到执行者。这就是 Template E。
+2. **异议先行决策**(《卓有成效的管理者》,1966):没有反对意见就不做决策。这与 **P6 保留异议**是同一杠杆,只是从另一端看。
+3. **联邦编队**(《公司的概念》,1946):中央管政策——交接契约、接口、红线、判级;每个编队对自己的交付物负责、可追责到**具名 Owner**。后果最终落在人身上。
+4. **信息型组织**(1988):中间不设转述 agent;信息直达决策者。共同的乐谱就是**交接契约**。
+
+那句告诫仍然成立:证据基础是 LLM 实证与聚合理论;管理学处方是设计类比,等待实测。防御来自隔离;建设来自目标、联邦编队与共同的乐谱。
 
 ## 二、对应的 agent 管理参考模式
 

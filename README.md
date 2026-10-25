@@ -57,7 +57,7 @@ the-agent-crowd is a **Claude Code skill + a framework-agnostic multi-agent mana
 
 1. **SKILL.md** — the two-domain doctrine, the seven principles (P0 Independence before quantity / P1 Quarantine verdicts / P2 The orchestrator speaks last / P3 Heterogeneity over homogeneity / P4 Blind the reviewer / P5 Evidence over fluency / P6 Keep the dissent), the four gates, and seven Red Flags that your team has become a mob (the README adds the three-symptom quick check)
 2. **playbook** — 4 copy-paste dispatch templates: cold-review dispatch / the Claim/Evidence/Confidence/Source/Owner handoff contract / debate moderation without shared drafts / the merge master checklist
-3. **principles** — a complete mapping of Le Bon's ideas × agent failure modes × engineering prescriptions; every prescription is grounded in LLM empirics and aggregation theory, see references/principles.md
+3. **principles** — a complete mapping of Le Bon's ideas × agent failure modes × engineering prescriptions; every prescription is grounded in LLM empirics and aggregation theory — see references/principles.md
 4. **experiment protocol** — a reproducible experiment protocol covering three isolation levels + a 2×2 reviewer configuration (protocol defined, results pending)
 5. **before-after cases** — a two-column comparison of the same bug (a design hypothesis; the gain awaits validation by the protocol's second experiment)
 
@@ -68,9 +68,9 @@ the-agent-crowd is a **Claude Code skill + a framework-agnostic multi-agent mana
 - Personal-level: copy into `~/.claude/skills/the-agent-crowd/` to apply across all projects
 
 **Three trigger modes**
-- Automatic: the skill enters when a session reaches a four-gate scenario (acceptance close-out, decision and merge, external release, about to trust the agents' collective confidence); full trigger phrases in SKILL.md's description
+- Automatic: the skill activates when a session reaches a four-gate scenario (acceptance close-out, decision and merge, external release, about to trust the agents' collective confidence); full trigger phrases in SKILL.md's description
 - By name: just call `the-agent-crowd`
-- Zero-trigger: the playbook templates can be copied directly, used as a dispatch-template cheat sheet
+- Zero-trigger: the playbook templates can be copied directly and used as a dispatch-template cheat sheet
 
 ## V. When NOT to Use
 

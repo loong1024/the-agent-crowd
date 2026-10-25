@@ -95,13 +95,14 @@ Before publishing the merged verdict, answer all six questions:
 4. Same-source double votes?  Agents sharing a model or a materially identical prompt count as ONE vote. Recount.
 5. Verdict after collection?  The orchestrator's own opinion may only be disclosed after all independent verdicts were collected. If it leaked earlier, re-dispatch.
 6. Boundary conditions written?  (What would make this call wrong?)
+Waiver rule: Q1 (bare green) and Q6 (boundary conditions) are never waived; Q2–Q5 may be waived for low-risk verdicts.
 
 If any answer fails, the merge is invalid: fix it, then re-run this checklist.
 ```
 
-## Template E——MBO 构建派发
+## Template E——MBO 构建派发(Objective-based Dispatch)
 
-对应 drucker.md D1(MBO 目标管理与自我控制):控制主体是执行 agent 本人——给目标、标准与自查度量,不给步骤;构建域专用(裁决域请走 Template A 冷审)。
+对应 drucker.md D1(MBO 目标管理与自我控制;OKR 直系:Grove→Doerr,无 key results 与公开对齐):把检查前移到执行者——给目标、标准与自查度量,不给步骤;构建域专用(裁决域请走 Template A 冷审)。
 
 ```text
 You own this task end to end. Manage yourself against the objective below; do not ask for step-by-step instructions.
@@ -109,6 +110,7 @@ You own this task end to end. Manage yourself against the objective below; do no
 Objective: <one sentence describing the OUTCOME, not the activities>
 Success criteria: <checkable statements, e.g. "returns exit 0; covers cases X">
 Self-check measure: run this yourself before reporting — <command or check>
+Self-checks must be independently re-runnable; at gates, review still goes through Template A — an executor checking itself is not a verdict.
 Constraints: <what you must NOT touch or change>
 Deliverable: <artifact path — a file, not a narrative>
 

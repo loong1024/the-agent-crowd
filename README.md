@@ -4,6 +4,8 @@
 > *A Study of the Popular Mind, for your agent teams.* Named after Gustave Le Bon's *The Crowd* (1895).
 
 
+<!-- EN What&why rewrite pending (DeepSeek batch): reposition as dual-source (Le Bon defense + Drucker construction) -->
+
 ## I. Why The Crowd
 
 In 1895, Gustave Le Bon published *The Crowd: A Study of the Popular Mind*, answering a question nobody took seriously at the time: **why does a smart person turn stupid the moment they join a group?** His list of ideas became the foundation of crowd psychology:
@@ -113,6 +115,8 @@ MIT License
 
 
 ## 一、为什么是《乌合之众》
+
+本体系结合两种思想设计:勒庞《乌合之众》提供防御叙事——裁决域为何必须隔离;德鲁克组织工程学提供建设叙事——构建域如何派发与组织。证据基础=LLM 实证+聚合理论;管理学处方属设计类比,待实验实测。
 
 1895 年,勒庞出版《乌合之众:大众心理研究》(The Crowd: A Study of the Popular Mind),回答了一个当时没人认真对待的问题:**为什么一个聪明人,一进群体就变蠢?**他给出的理念清单成了群体心理学的地基:
 

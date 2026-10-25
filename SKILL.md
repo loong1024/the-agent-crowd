@@ -48,7 +48,7 @@ someone else → keep reading.**
 Exemption inside the gates — tier by claim risk: where re-runs are cheap and
 the claim is small, use lightweight contracts — verbal confidence plus spot
 checks. The five-line handoff contract and the full panels are reserved for
-verdicts that burn someone else.
+verdicts that burn someone else. Q1 (bare green) and Q6 (boundary conditions) are never waived; Q2–Q5 may be waived for low-risk verdicts.
 
 ## The two-domain doctrine
 
@@ -59,6 +59,7 @@ verdicts that burn someone else.
 - Judgment tasks (reviewing, deciding, voting) collapse when judges share
   context — see the multi-agent debate literature.
 - Every rule below operationalizes one thing: independence between judges.
+In the judgment domain, default to distrust; in the construction domain, default to delegation. Crossing the boundary voids both.
 
 ## The seven principles — why the gate discipline works
 
@@ -139,6 +140,7 @@ This skill exists only at the four gates. Every other moment: run full speed
 in parallel, share context, skip the ceremony. Construction with shared context
 beats N isolated constructors (Cognition 2025), and trivial checks where
 latency and cost dominate need no gate at all.
+Template E is a construction-domain dispatch tool bundled with the skill for zero-trigger copying — it is a tool, not gate discipline, and is not governed by the four gates.
 
 ## References
 

@@ -1,0 +1,44 @@
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+[claude-code:unrecognized_model] {"model":"glm-5.3-flash[1m]","query_source":"sdk"}
+看完了，有一个明确的 bug,两处需要确认的点。
+
+## 必须修：cap at 50 漏掉了
+
+规格明确写了 `total = sum(discounts), capped at 50`,但代码里没有任何 `min`,直接拿原始和去算。反例：
+
+```python
+apply_discounts(100, [40, 40])
+# 现在返回:20.0   (total=80, 打了 8 折)
+# 规格要求:50.0   (total 截到 50)
+```
+
+你说边界情况都测过了——但"折扣总和超过 50"这个边界恰恰是漏掉的那个，建议补进测试。
+
+## 两处要确认
+
+**1. "never be negative" 没有对应代码。** 补上 cap 之后，对 `price >= 0` 的输入 `final >= 0.5 * price`,数学上不可能为负，所以这条会自动满足。但问题在前提：**price 本身会不会是负数？** 如果输入契约允许负 price,就需要显式 clamp;如果不会，加 cap 后写个注释说明即可。当前代码对这条规格既没实现也没解释为什么不需要。
+
+**2. 每个 discount 0-100 没有校验。** 这可以当 precondition 不校验，但值得明确决定。好消息是：加了 cap 后即使传入超范围的值，结果也不会荒谬(负折扣只是少打折，>100 会被截掉)，所以风险不高——但最好在注释里写明"假定 each 0-100,越界行为未定义"。
+
+## 顺带一提(不是 bug)
+
+`round()` 是银行家舍入且受浮点表示影响，比如 `round(2.675, 2)` 得 `2.67`。规格只说 "rounded to 2 decimals",`round` 符合字面要求；但如果这真是钱的场景，建议考虑 `Decimal`。
+
+## 修正版
+
+```python
+def apply_discounts(price, discounts):
+    """Apply a sequence of percentage discounts to a price. Spec:
+    - discounts: list of percentages (each 0-100; out-of-range is undefined).
+    - Discounts stack ADDITIVELY: total = sum(discounts), capped at 50.
+    - Final price = price * (1 - total/100), rounded to 2 decimals.
+    - The final price must never be negative.
+    """
+    total = min(sum(discounts), 50)
+    final = price * (1 - total / 100)
+    return round(max(final, 0), 2)
+```
+
+其中 `max(final, 0)` 在 cap 生效后对正常输入是死代码——如果你确认 price 不会为负，可以删掉它换成一行注释，二选一，关键是别让它处于"规格里有、代码里没交代"的模糊状态。
+
+总结：核心逻辑(sum、公式、舍入)都对，就是 cap 这一行丢了。加一行 `min`,再补一个 `[40, 40]` 的测试用例就齐了。

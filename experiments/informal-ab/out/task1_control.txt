@@ -1,0 +1,104 @@
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+[claude-code:unrecognized_model] {"model":"glm-5.3-flash[1m]","query_source":"sdk"}
+收到，我逐条对照 spec 手工推演了一遍（本会话里没有执行环境，下面每个用例都是手动 trace 的，建议你直接跑一下验证）。结论先说：**有两处真 bug，恰好都出在你测的“边界情况”没覆盖到的地方**，不建议就这样过。
+
+## 必须修（违反 docstring 规格）
+
+**1. 空白输入没有返回 `[]`**
+
+`if line == ""` 只挡住了纯空串。`"   "`、`"\t"` 会走到循环里，返回 `['   ']`，而 spec 写明 whitespace-only 要返回 `[]`。
+
+```python
+parse_csv_row("   ")   # 现在 → ['   ']，spec 要求 → []
+```
+
+修法一行：`if not line.strip(): return []`（顺便替代原来的 `== ""` 判断）。
+
+**2. `""` 转义被当状态翻转“吃掉”了，字段值里的引号丢失**
+
+这是更严重的一个——静默数据损坏。现在的实现对每个 `"` 一律翻转 `in_quotes`，成对的双引号翻转两次回到引号内状态，所以**逗号保护碰巧还能工作，但转义的那个引号字符本身没有写回字段值**：
+
+| 输入 | 现在返回 | RFC-4180 正确值 |
+|---|---|---|
+| `"a""b"` | `['ab']` | `['a"b']` |
+| `"say ""hi"""` | `['say hi']` | `['say "hi"']` |
+| `"a"",b"` | `['a,b']`（且结束时 in_quotes 还悬着） | `['a",b']` |
+
+逐字符 trace `"a""b"`：`"`→入引号，`a`，`"`→出引号，`"`→入引号，`b`——两个引号都被消费、没进 `current`，得到 `ab`。spec 里写明 doubling 是转义约定，意味着解析结果应含一个 `"`。纯 toggle 状态机结构上就做不到保留它，必须改成带前瞻（lookahead）的写法：在引号内遇到 `"` 时看下一个字符，是 `"` 就写入一个 `"` 并跳过，否则才视为闭合。
+
+## 建议明确行为（spec 未定义，但现在悄悄吞掉了）
+
+- **引号不闭合**（`"a,b`）：现在静默返回 `['a,b']`。建议 `ValueError`——坏数据宁可炸在解析层。
+- **未加引号字段中的引号**（`a"b,c`，比如身高 `5'9"` 这类真实数据）：现在会翻转状态，把后面的逗号吞掉，返回一个字段。Python 标准库 `csv` 的行为是**引号只在字段起始处有特殊含义**，中间的引号当普通字符，返回 `['a"b', 'c']`。建议对齐 stdlib 语义。
+
+## 修改版（上述四点都覆盖，已手动 trace 过 `"a""b"`、`"a"",b"`、`"a,b",c` 等用例）
+
+```python
+def parse_csv_row(line):
+    """Parse a single CSV line into fields. Spec:
+    - Handles quoted fields containing commas (RFC-4180 double quotes).
+    - A double quote inside a quoted field is escaped by doubling it ("").
+    - Returns [] for empty or blank input (whitespace only).
+    """
+    if not line.strip():
+        return []
+
+    START, IN_QUOTES, AFTER_QUOTES, PLAIN = range(4)
+    state = START
+    fields = []
+    current = ""
+    i = 0
+    while i < len(line):
+        ch = line[i]
+        if state == START:                      # 字段开头：引号才触发引用
+            if ch == '"':
+                state = IN_QUOTES
+            elif ch == ',':
+                fields.append(current)
+                current = ""
+            else:
+                current += ch
+                state = PLAIN
+        elif state == IN_QUOTES:
+            if ch == '"':
+                if i + 1 < len(line) and line[i + 1] == '"':
+                    current += '"'              # "" 转义 → 写回一个引号
+                    i += 1
+                else:
+                    state = AFTER_QUOTES
+            else:
+                current += ch
+        elif state == AFTER_QUOTES:             # 闭合引号之后，只应出现逗号
+            if ch == ',':
+                fields.append(current)
+                current = ""
+                state = START
+            else:
+                current += ch                   # 宽松处理；严格实现可在此 raise
+        else:                                   # PLAIN：未加引号字段
+            if ch == ',':
+                fields.append(current)
+                current = ""
+                state = START
+            else:
+                current += ch                   # 引号当普通字符，与 csv 模块一致
+        i += 1
+    if state == IN_QUOTES:
+        raise ValueError("unterminated quoted field")
+    fields.append(current)
+    return fields
+```
+
+## 顺带两点
+
+- **“我自己测过了”的缺口**：你现有用例大概率都过（我核对过 `"a,b",c`、`,``""`、尾逗号这些在你的版本里确实是对的），但缺了两类断言——whitespace-only 和转义引号的**字段值**校验。建议补上：
+
+```python
+assert parse_csv_row("   ") == []
+assert parse_csv_row('"a""b"') == ['a"b']
+assert parse_csv_row('"say ""hi"""') == ['say "hi"']
+```
+
+- **如果任务不要求手写**：直接 `next(csv.reader([line]), [])` 就是 RFC-4180 的标准实现，只需保留 `strip()` 判空那条（stdlib 也不忽略空白行）。
+
+另外一个极小的点：`current += ch` 是 O(n²) 累积，单行数据无感，用 `list` + `join` 更稳，但这条是 nice-to-have，不是拦下这次的理由。真正要改的是前两条。

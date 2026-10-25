@@ -1,0 +1,67 @@
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+[claude-code:unrecognized_model] {"model":"glm-5.3-flash[1m]","query_source":"sdk"}
+直接说结论：这个实现有 4 个问题，其中 3 个直接违反规格——「边界情况都处理好了」恰恰不成立，它的核心路径就是错的。逐条对照规格：
+
+## 逐条对照规格
+
+**1. 「Input list must NOT be mutated」→ 违反(最直接)**
+
+`tags.append(new_tag)` 就地修改了调用方的列表：
+
+```python
+src = ["a", "b"]
+result = add_tag(src, "c")
+src   # → ['a', 'b', 'c']  被改了
+```
+
+测试时漏掉它很正常：如果只 `print(result)` 而不回头看 `src`,发现不了。
+
+**2. 「Order preserved」→ 违反**
+
+`list(set(tags))` 的迭代顺序由哈希决定，和原顺序无关，而且字符串哈希随机化导致每次运行结果都可能不同：
+
+```python
+add_tag(["b", "a"], "c")   # 可能是 ['c', 'a', 'b']、['a', 'c', 'b']……任何顺序
+```
+
+**3. 「Called without tags: starts from an empty list」→ 违反**
+
+`tags=[]` 是可变默认参数，只在函数定义时创建一次、被所有调用共享，而 `append` 会污染它：
+
+```python
+add_tag(new_tag="x")   # → ['x']
+add_tag(new_tag="y")   # → ['x', 'y']   规格要求是 ['y']
+```
+
+不连续调用两次默认参数根本观察不到，单次测试必过。
+
+**4. 空串分支返回原对象(别名问题)**
+
+`if new_tag == "": return tags` 返回的是输入列表本身(走默认参数时返回的是那个共享默认列表)。调用方拿到后一改，就改到了调用者的原列表 / 影响后续默认调用。即使不按别名严格要求，它和非空分支「返回新列表」的行为也不一致。
+
+另一个附带问题：即使语义上「去重」碰巧对了(如 `add_tag(["a"], "a")` 输出 `['a']`),输入也已经被 append 污染成 `['a', 'a']` 了。
+
+## 建议改法
+
+```python
+def add_tag(tags=None, new_tag=""):
+    """Add new_tag to a tags list, returning the updated list. Spec:
+    - Called without tags: starts from an empty list.
+    - The input list must NOT be mutated.
+    - Order preserved; duplicate tags ignored.
+    """
+    if tags is None:
+        tags = []
+    result = list(tags)          # 拷贝,不动输入
+    if new_tag != "" and new_tag not in result:
+        result.append(new_tag)
+    return result
+```
+
+- `None` 哨兵替代 `[]` 默认值，每次调用都是全新列表；
+- 先拷贝再操作，输入零改动；
+- 用 `in` 判断去重，天然保序，也顺带解决了别名问题(两个分支都返回新列表)。
+
+一点需要你确认的语义：「duplicate tags ignored」我理解为「新增时若已存在则忽略、输入里原有的重复保持原样」。如果你的意思是「把输入里的重复也去掉但保留首次出现顺序」，把拷贝那行换成 `result = list(dict.fromkeys(tags))` 即可。
+
+补三个能抓住这几个 bug 的测试：调用后断言原列表未变；连续两次无参调用断言第二次结果只含第二个标签;`add_tag(["b", "a"], "c")` 断言结果等于 `["b", "a", "c"]`(顺序敏感)。

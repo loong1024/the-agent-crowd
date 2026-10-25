@@ -1,0 +1,56 @@
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+[claude-code:unrecognized_model] {"model":"glm-5.3-flash[1m]","query_source":"sdk"}
+## 冷审结论:整体 **fail**
+
+判定方法:静态语义分析,未执行(以下均为 Python 的定义性行为,非推测)。无 blocked / skipped 项。
+
+### 逐条判定
+
+**1. "Called without tags: starts from an empty list" — fail**
+
+```python
+def add_tag(tags=[], new_tag=""):
+```
+```python
+    tags.append(new_tag)
+```
+默认列表在 def 时创建一次,所有无 `tags` 调用共享同一对象,且 `append` 直接写入它,函数体内无任何重新初始化。第 1 次 `add_tag(new_tag="a")` 后默认值已是 `["a"]`;第 2 次 `add_tag(new_tag="b")` 返回 `["a", "b"]` 而非 `["b"]`。
+
+**2. "The input list must NOT be mutated" — fail**
+
+```python
+    tags.append(new_tag)
+    return list(set(tags))
+```
+`append` 在生成任何副本之前就地修改调用方列表;末行的 `list(set(...))` 只是构造新返回值,不能撤销已发生的变异。`t = ["x"]` 后调用 `add_tag(t, "y")`,`t == ["x", "y"]`。
+
+**3. "Order preserved" — fail**
+
+```python
+    return list(set(tags))
+```
+set 的迭代顺序是哈希表槽位顺序,不是输入顺序,语言层面对此无任何保证(str 元素还会随进程哈希种子变化)。`add_tag(["b", "a"], "c")` 的三种排列输出都可能出现。
+
+**4. "duplicate tags ignored" — pass**
+
+```python
+    return list(set(tags))
+```
+set 去重确实使重复 tag 被忽略,如 `add_tag(["a", "b"], "a")` → `["a", "b"]`。附注:此 pass 依赖的正是第 3 条中破坏顺序的同一转换;且 `new_tag == ""` 分支不去重(直接 `return tags`)。
+
+### 规格四条之外的实质缺陷
+
+**A. 返回值别名污染 — fail**(规格未定义 `new_tag == ""` 的行为,但这是第 1 条根因的直接后果)
+
+```python
+    if new_tag == "":
+        return tags
+```
+该分支返回传入对象/共享默认列表本身,无副本,与另一分支(`return list(set(tags))`,总是新对象)的别名契约不一致。后果:
+
+```python
+r1 = add_tag(); r2 = add_tag()   # r1 is r2 → True,同一默认列表
+add_tag(new_tag="t")             # r1、r2 被追溯变为 ["t"]
+```
+
+**B. 空串哨兵**(spec-silent,一行不计入判定):`if new_tag == "": return tags` 使空字符串永远无法作为 tag 添加,且会静默跳过。

@@ -6,6 +6,21 @@
 
 [English](README.md) | 简体中文
 
+## 什么时候启用:四道闸门
+
+本 skill 只存在于四个闸门——裁决一旦错了,烧掉的不是一次重跑:
+
+| 闸门 | 时刻 | 错的代价 |
+|---|---|---|
+| 验收闸 | 批次收官 ship / no-ship | 错报绿灯 = bug 发给用户 |
+| 拍板闸 | 方案定稿、合并 main、架构选型 | 错拍板 = 下游全返工 |
+| 对外闸 | 公开发布、花钱、删数据、对外内容 | 错了追不回 |
+| 信任闸 | 准备照 agent 集体自信结论改变方向 | 错信任 = 白烧一周 |
+
+**判断口诀:这个裁决错了,是重跑一次就完,还是烧到别人?重跑→本 skill 不启用;烧到别人→继续读。**
+
+闸门内按 claim 风险分级:重跑成本低的小管线用轻量契约(口头置信 + 抽查);五行契约与全套面板只留给烧到别人的裁决。
+
 ## 三症状快速自检
 
 1. 不同 agent 的输出措辞高度雷同。
@@ -16,11 +31,11 @@
 
 ## 这是什么,为什么需要
 
-1895 年,古斯塔夫·勒庞观察个体消融进群体之后的机制:个人判断崩溃、情绪放大、错误传染、最流利的发言者获胜。LLM agent 团队把这套机制逐条复现——而且没有人类的借口:agent 不会疲劳、不会丢面子,并且字面意义上「靠暗示驱动」。没有工程化独立性的多 agent 系统不是集成(ensemble),而是一个大脑持有自己偏见的 N 份拷贝。
+名字借自古斯塔夫·勒庞《乌合之众》(1895):他笔下的群体病症——个人判断崩溃、情绪放大、错误传染、最流利的发言者获胜——在多 agent 体系里确有对应物。但本仓库的工程处方不从勒庞推导:真实依据是 LLM 实证(谄媚、锚定、相关误差、上下文污染)+ 现代聚合理论(Galton 1907;Condorcet 1785;Surowiecki 2004)。勒庞对人类群体的机制主张已被现代研究修正(McPhail 1991;Postmes & Spears 1998)——我们只借失效叙事,不采纳其机制、结论与政治立场。
 
-这种失效在现代文献里有名字:相关误差(correlated errors)。同一个提示词、同一个模型起的 N 个 agent,是一个评审员带着 N 份自己的错误——agent 数量增加不等于准确率提高。辩论还可能更糟:agent 们收敛到一个自信的有偏共识,而不是互相纠错。解药很古老,也有据可查:Galton 1907 年的竞重人群命中答案,是因为判断彼此独立;Condorcet 陪审团定理说明独立性为何是承重假设;Surowiecki 把分水岭说得很直白——互动群体(勒庞的)vs 隔离判断的聚合。
+这种失效在现代文献里有名字:相关误差(correlated errors)。同一个提示词、同一个模型起的 N 个 agent,是一个评审员带着 N 份自己的错误——agent 数量增加不等于准确率提高。辩论还可能更糟:agent 们收敛到一个自信的有偏共识,而不是互相纠错。有据可查的解药是对独立判断做聚合:Galton 1907 年的竞重人群命中答案,是因为判断彼此独立;Condorcet 陪审团定理说明独立性为何是承重假设;Surowiecki 把分水岭说得很直白——独立性区分了乌合之众与群体智慧。
 
-因此本仓库的最高纲领:**判断要隔离,构建可共享(Isolate for judgment. Share for construction.)**。构建类工作(写代码、写文档)受益于共享上下文;判断类工作(评审、决策、投票)在评审者共享上下文时崩溃。这里的一切都在把这一个区分工程化。
+因此有了两域论:**判断要隔离,构建可共享(Isolate for judgment. Share for construction.)**。构建类工作(写代码、写文档)受益于共享上下文;判断类工作(评审、决策、投票)在评审者共享上下文时崩溃。这里的一切都在把这一个区分工程化——而且只在上面四道闸门处生效;其余时刻,全速跑。
 
 ## 七原则
 
@@ -45,7 +60,7 @@
 - 个人级:`~/.claude/skills/the-agent-crowd/SKILL.md`
 - 项目级:`<你的项目>/.claude/skills/the-agent-crowd/SKILL.md`——随项目提交,队友和每个 agent 会话自动继承这套纪律。
 
-触发场景:多 agent 设计、子 agent 派发、集成 / 辩论工作流、评审派发,或团队收敛到一个自信的错误答案时。
+触发场景:验收收官、拍板与合并、对外发布,以及准备信任 agent 集体自信结论的时刻;或团队收敛到一个自信的错误答案时。
 
 ### 其他框架(CrewAI / LangGraph / AutoGen 等)
 
@@ -56,13 +71,11 @@
 - [experiments/protocol.md](experiments/protocol.md) — 最小复现协议:验证或证伪本仓库的机制主张(协议已定义,结果待跑)
 - [examples/before-after.md](examples/before-after.md) — 用于校准管线的对照案例
 
-建议的第一步:在你下一次多 agent 派发之前,先过一遍 [SKILL.md](SKILL.md) 里的 Pre-flight 问题。
+建议的第一步:在你下一次闸门派发之前,先过一遍 [SKILL.md](SKILL.md) 里的 Pre-flight 问题。
 
 ## 什么时候不要用
 
-- 单一、界定清晰的任务:一个带好提示词的 agent 胜过协调开销。
-- 构建类工作且连贯性比判断重要:保留共享上下文;不要盲目并行编辑同一批文件。
-- 延迟 / 成本占主导的琐碎检查。
+本 skill 只在四个闸门存在。其余时刻:全速并行、共享上下文、零仪式。构建类工作带着共享上下文胜过 N 个互相隔离的构建者(Cognition 2025);延迟 / 成本占主导的琐碎检查根本不需要闸门。
 
 ## 相关工作
 
@@ -79,10 +92,13 @@
 7. *Emergence of Biased Consensus in Multi-Agent LLM Debates* (2026) — https://arxiv.org/abs/2608.02827
 8. Cognition, *Don't Build Multi-Agents* (2025) — https://cognition.com/blog/dont-build-multi-agents
 9. Anthropic, *How we built our multi-agent research system* (2025)
+10. Sharma et al., *Towards Understanding Sycophancy in Language Models* (2023) — arXiv 2310.13548,https://arxiv.org/abs/2310.13548
+11. Chan et al., *ChatEval: Towards Better LLM-based Evaluators through Multi-Agent Debate* (ICLR 2024) — arXiv 2308.07201,https://arxiv.org/abs/2308.07201
+12. McPhail, *The Myth of the Madding Crowd* (1991);Postmes & Spears,去个体化元分析,*Psychological Bulletin* (1998)
 
 ## 声明
 
-勒庞《乌合之众》(1895)是政论而非实证科学;其中「种族灵魂」等决定论已被现代科学抛弃。本仓库只借用其对群体行为的观察——去个体化、感染、暗示、对幻觉的偏好——不采纳其结论与政治立场。
+勒庞《乌合之众》(1895)是政论而非实证科学;其中「种族灵魂」等决定论已被现代科学抛弃——最直接的反证见 McPhail(1991)与 Postmes & Spears(1998,*Psychological Bulletin*)的去个体化元分析。本仓库只借用其对群体行为的观察——去个体化、感染、暗示、对幻觉的偏好——作为命名隐喻与失效叙事;工程处方的依据是 LLM 实证与聚合理论,不采纳勒庞的结论与政治立场。
 
 ## 许可
 

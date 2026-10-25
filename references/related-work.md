@@ -23,5 +23,8 @@
 7. *Emergence of Biased Consensus in Multi-Agent LLM Debates* (2026) — https://arxiv.org/abs/2608.02827
 8. Cognition, *Don't Build Multi-Agents* (2025) — https://cognition.com/blog/dont-build-multi-agents
 9. Anthropic, *How we built our multi-agent research system* (2025)
+10. Sharma et al., *Towards Understanding Sycophancy in Language Models* (2023) — arXiv 2310.13548: https://arxiv.org/abs/2310.13548
+11. Chan et al., *ChatEval: Towards Better LLM-based Evaluators through Multi-Agent Debate* (ICLR 2024) — arXiv 2308.07201: https://arxiv.org/abs/2308.07201
+12. McPhail, *The Myth of the Madding Crowd* (1991);Postmes & Spears,去个体化元分析,*Psychological Bulletin* (1998)
 
 此清单即本仓库的全部引用来源:principles.md 的「依据」列、README 的 Sources、示例中的推理均出自以上条目,不另引其他文献。

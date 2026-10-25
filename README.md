@@ -8,6 +8,21 @@ English | [简体中文](README.zh.md)
 
 <!-- Status: draft. English copy pending professional review; README.zh.md is the canonical full version. -->
 
+## When to reach for this: the four gates
+
+This skill exists only where a wrong verdict burns something other than a re-run.
+
+| Gate | When | Cost of a wrong verdict |
+|---|---|---|
+| Acceptance gate | batch sign-off: ship / no-ship | a wrong green ships bugs to users |
+| Decision gate | spec sign-off, merge to main, architecture choice | everything downstream gets reworked |
+| External gate | public release, spending money, deleting data, outbound content | mistakes that cannot be taken back |
+| Trust gate | about to change course on a collectively confident agent conclusion | a week burned on the wrong direction |
+
+**One-line test: if this verdict turns out wrong, is the fix one more run — or does it burn someone else? One more run → this skill stays off. Burns someone else → keep reading.**
+
+Inside the gates, tier by claim risk: cheap-to-rerun small pipelines use lightweight contracts (verbal confidence + spot checks); the five-line contract and full panels are reserved for verdicts that burn others.
+
 ## Three-symptom quick check
 
 1. Outputs from different agents are near-identical in wording.
@@ -18,11 +33,11 @@ Hit any one of the three and your agent legion is already turning into a mob.
 
 ## What & why
 
-In 1895, Gustave Le Bon watched individuals dissolve into crowds and described the mechanics: personal judgment collapses, emotion amplifies, errors are contagious, and the most fluent speaker wins. LLM agent teams recreate every one of those mechanics — without humanity's excuses. Agents do not tire, do not lose face, and literally run on suggestion. A multi-agent system without engineered independence is not an ensemble; it is one mind holding N copies of its own biases.
+The name is borrowed from Gustave Le Bon's *The Crowd* (1895): his portraits of crowd failure — personal judgment collapses, emotion amplifies, errors are contagious, the most fluent speaker wins — have real counterparts in multi-agent systems. But the prescriptions here are not derived from him. The working evidence is LLM empirics — sycophancy, anchoring, correlated errors, context contamination — plus modern aggregation theory (Galton 1907; Condorcet 1785; Surowiecki 2004). Le Bon's mechanism claims about human crowds were revised by modern research (McPhail 1991; Postmes & Spears 1998); we borrow the failure narrative, never his mechanisms, conclusions, or politics.
 
-The failure has a modern name: correlated errors. N agents launched with the same prompt and the same model are one judge with N copies of its errors — more agents do not mean more accuracy. Debate can make it worse: agents converge on a confidently biased consensus instead of correcting each other. The antidote is old and well documented: Galton's 1907 crowd nailed the ox weight because the guesses were independent; Condorcet's jury theorem shows why independence is the load-bearing assumption; Surowiecki names the dividing line plainly — interacting crowds (Le Bon's) versus aggregated isolated judgments.
+The failure has a modern name: correlated errors. N agents launched with the same prompt and the same model are one judge with N copies of its errors — more agents do not mean more accuracy. Debate can make it worse: agents converge on a confidently biased consensus instead of correcting each other. The documented antidote is aggregation over independent judgments: Galton's 1907 crowd nailed the ox weight because the guesses were independent; Condorcet's jury theorem shows why independence is the load-bearing assumption; Surowiecki names independence as the line between a mob and a wise crowd.
 
-Hence this repo's Prime Directive: **Isolate for judgment. Share for construction.** Construction work (writing code, drafting docs) benefits from shared context; judgment work (reviewing, deciding, voting) collapses when judges share context. Everything here operationalizes that single distinction.
+Hence the two-domain doctrine: **Isolate for judgment. Share for construction.** Construction work (writing code, drafting docs) benefits from shared context; judgment work (reviewing, deciding, voting) collapses when judges share context. Everything here operationalizes that single distinction — and it is enforced only at the four gates above; everywhere else, run free.
 
 ## The 7 principles
 
@@ -47,7 +62,7 @@ Copy the skill into a skills directory:
 - personal: `~/.claude/skills/the-agent-crowd/SKILL.md`
 - project: `<your-project>/.claude/skills/the-agent-crowd/SKILL.md` — commit it with the project so every teammate's and every agent session inherits the discipline.
 
-The skill triggers on multi-agent design, subagent dispatch, ensemble/debate workflows, and review dispatches — or whenever an agent team converged on a confidently wrong answer.
+The skill triggers at the four gates: acceptance sign-offs, decisions and merges, external releases, and moments of trusting an agent team's confident collective conclusion — or whenever an agent team converged on a confidently wrong answer.
 
 ### Other frameworks (CrewAI / LangGraph / AutoGen / ...)
 
@@ -58,13 +73,11 @@ Read `references/` as a methodology; there is no runtime dependency:
 - [experiments/protocol.md](experiments/protocol.md) — minimal reproducibility protocol to verify or falsify the mechanism claims (protocol defined; results pending)
 - [examples/before-after.md](examples/before-after.md) — a worked case for calibrating your pipeline
 
-A good first step: run the Pre-flight questions in [SKILL.md](SKILL.md) before your next multi-agent dispatch.
+A good first step: run the Pre-flight questions in [SKILL.md](SKILL.md) before your next gate dispatch.
 
 ## When NOT to use this
 
-- Single well-scoped task: one agent with a good prompt beats coordination overhead.
-- Construction where coherence matters more than judgment: keep shared context; do not blindly parallelize agents editing the same files.
-- Trivial checks where latency/cost dominates.
+This skill exists only at the four gates. Every other moment: run full speed in parallel, share context, skip the ceremony. Construction with shared context beats N isolated constructors (Cognition 2025), and trivial checks where latency and cost dominate need no gate at all.
 
 ## Related work
 
@@ -81,10 +94,13 @@ Orchestration mechanics (parallel waves, dispatch, hooks) are well served by exi
 7. *Emergence of Biased Consensus in Multi-Agent LLM Debates* (2026) — https://arxiv.org/abs/2608.02827
 8. Cognition, *Don't Build Multi-Agents* (2025) — https://cognition.com/blog/dont-build-multi-agents
 9. Anthropic, *How we built our multi-agent research system* (2025)
+10. Sharma et al., *Towards Understanding Sycophancy in Language Models* (2023) — arXiv 2310.13548, https://arxiv.org/abs/2310.13548
+11. Chan et al., *ChatEval: Towards Better LLM-based Evaluators through Multi-Agent Debate* (ICLR 2024) — arXiv 2308.07201, https://arxiv.org/abs/2308.07201
+12. McPhail, *The Myth of the Madding Crowd* (1991); Postmes & Spears, deindividuation meta-analysis, *Psychological Bulletin* (1998)
 
 ## Disclaimer
 
-Le Bon's *The Crowd* (1895) is political commentary, not empirical science; its deterministic notions (such as the "race soul") have been abandoned by modern science. This repo borrows only his behavioral observations — deindividuation, contagion, suggestibility, the preference for illusion — and adopts neither his conclusions nor his politics.
+Le Bon's *The Crowd* (1895) is political commentary, not empirical science; its deterministic notions (such as the "race soul") have been abandoned by modern science — most directly in McPhail (1991) and the Postmes & Spears (1998, *Psychological Bulletin*) deindividuation meta-analysis. This repo borrows only his behavioral observations — deindividuation, contagion, suggestibility, the preference for illusion — as naming metaphor and failure narrative; the engineering prescriptions rest on LLM empirics and aggregation theory, and we adopt neither Le Bon's conclusions nor his politics.
 
 ## License
 

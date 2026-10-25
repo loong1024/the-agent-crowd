@@ -98,6 +98,28 @@ Before publishing the merged verdict, answer all five questions:
 If any answer fails, the merge is invalid: fix it, then re-run this checklist.
 ```
 
+## Template E — MBO worker dispatch(构建域)
+
+对应 drucker.md D1(MBO 目标管理与自我控制):控制主体是执行 agent 本人——给目标、标准与自查度量,不给步骤;构建域专用(裁决域请走 Template A 冷审)。
+
+```text
+You own this task end to end. Manage yourself against the objective below; do not ask for step-by-step instructions.
+
+Objective: <one sentence describing the OUTCOME, not the activities>
+Success criteria: <checkable statements, e.g. "returns exit 0; covers cases X">
+Self-check measure: run this yourself before reporting — <command or check>
+Constraints: <what you must NOT touch or change>
+Deliverable: <artifact path — a file, not a narrative>
+
+Report format: one claim + evidence per success criterion; verdict graded (pass/fail/blocked/skipped/unverified). Anything you could not verify: mark it unverified. Do not guess.
+```
+
+要点:
+- Objective 写成果不写活动——「让 <feature> 通过 <checks>」,不是「修改 <file>」;
+- Self-check measure 是 MBO「自我控制」的落地:控制主体回到被管理者本人,agent 报告前自己跑检查;
+- 步骤指令只出现在不需要判断的环节;需要判断的地方给目标与边界条件;
+- 末行风险分级:小任务口头置信 + 抽查即可;大交付走 Template B 五行契约。
+
 ## 反模式表(与 SKILL.md 的 Red Flags 一一对应)
 
 | # | 症状 | 病因 | 处方 |

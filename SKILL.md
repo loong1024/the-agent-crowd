@@ -23,6 +23,9 @@ failure narrative: the ailments he described have real counterparts in
 multi-agent systems, but his mechanism claims about human crowds were revised
 by modern research (McPhail 1991; Postmes & Spears 1998). We borrow the
 narrative — never his mechanisms, conclusions, or politics.
+Management-practice prescriptions (MBO dispatch, federal squad design,
+dissent-first decisions) come from Drucker's organizational engineering
+(1946–1999); their mapping to agents is design analogy, not measured results.
 
 ## When to activate: the four gates
 
@@ -111,11 +114,13 @@ Smell: a debate where everyone converged and no minority position is recorded.
    construction? Are the judges zero-context? Did any orchestrator opinion
    leak into a dispatch? Do two same-model agents share a vote? Can dissent
    be recorded?
-2. **Dispatch**: use templates in references/playbook.md.
+2. **Dispatch**: use an MBO dispatch — objective + success criteria + a self-checkable measure; give step-by-step instructions only where judgment is not wanted (see references/drucker.md D1 / playbook Template E).
 3. **Handoff**: every inter-agent claim uses the Claim/Evidence/Confidence/
    Source/Owner contract.
 4. **Merge**: the orchestrator merges verdicts, quotes dissent, and never
-   issues a bare green (a pass with no traceable evidence).
+   issues a bare green (a pass with no traceable evidence). Before acting on
+   the merged verdict, state its boundary conditions — what would make this
+   call wrong; no decision without dissent (see references/drucker.md D3).
 
 ## Red Flags — you are running a mob, not a team
 
@@ -140,5 +145,6 @@ latency and cost dominate need no gate at all.
 - [references/principles.md](references/principles.md) — full mapping, with citations
 - [references/playbook.md](references/playbook.md) — copy-paste dispatch templates
 - [references/related-work.md](references/related-work.md) — survey and research
+- [references/drucker.md](references/drucker.md) — organizational engineering for the construction side (Drucker)
 - [experiments/protocol.md](experiments/protocol.md) — minimal reproducibility protocol (defined; results pending)
 - [examples/before-after.md](examples/before-after.md) — worked example

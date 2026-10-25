@@ -1,4 +1,6 @@
-# crowd-proof-agents
+# the-agent-crowd
+
+> 命名源自勒庞《乌合之众》(*The Crowd: A Study of the Popular Mind*, 1895)——一份写给 agent 军团的「大众心理研究」。
 
 **面向多智能体 LLM 系统的独立性工程。** 一个 Claude Code skill + 一套框架无关的方法论,防止你的 agent 团队退化成乌合之众。
 
@@ -40,8 +42,8 @@
 
 把 skill 拷进 skills 目录:
 
-- 个人级:`~/.claude/skills/crowd-proof-agents/SKILL.md`
-- 项目级:`<你的项目>/.claude/skills/crowd-proof-agents/SKILL.md`——随项目提交,队友和每个 agent 会话自动继承这套纪律。
+- 个人级:`~/.claude/skills/the-agent-crowd/SKILL.md`
+- 项目级:`<你的项目>/.claude/skills/the-agent-crowd/SKILL.md`——随项目提交,队友和每个 agent 会话自动继承这套纪律。
 
 触发场景:多 agent 设计、子 agent 派发、集成 / 辩论工作流、评审派发,或团队收敛到一个自信的错误答案时。
 

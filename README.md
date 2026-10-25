@@ -1,4 +1,6 @@
-# crowd-proof-agents
+# the-agent-crowd
+
+> *A study of the popular mind — for your agent teams. Named after Gustave Le Bon's* The Crowd *(1895).*
 
 **Independence engineering for multi-agent LLM systems.** A Claude Code skill plus a framework-agnostic playbook for keeping your agent team from behaving like a crowd.
 
@@ -42,8 +44,8 @@ Full mapping from crowd mechanics to engineering countermeasures, with citations
 
 Copy the skill into a skills directory:
 
-- personal: `~/.claude/skills/crowd-proof-agents/SKILL.md`
-- project: `<your-project>/.claude/skills/crowd-proof-agents/SKILL.md` — commit it with the project so every teammate's and every agent session inherits the discipline.
+- personal: `~/.claude/skills/the-agent-crowd/SKILL.md`
+- project: `<your-project>/.claude/skills/the-agent-crowd/SKILL.md` — commit it with the project so every teammate's and every agent session inherits the discipline.
 
 The skill triggers on multi-agent design, subagent dispatch, ensemble/debate workflows, and review dispatches — or whenever an agent team converged on a confidently wrong answer.
 

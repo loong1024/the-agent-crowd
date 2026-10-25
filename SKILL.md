@@ -1,9 +1,9 @@
 ---
-name: crowd-proof-agents
+name: the-agent-crowd
 description: Independence engineering for multi-agent LLM systems, derived from crowd psychology (Le Bon's The Crowd, 1895) and modern multi-agent research. Use when designing subagent orchestration, ensemble/debate workflows, or agent review pipelines; when dispatching reviewer/critic agents; or when an agent team converged on a confidently wrong answer. Triggers: multi-agent design, subagent dispatch, ensemble, debate, groupthink, 乌合之众, 从众, 独立评审.
 ---
 
-# Crowd-Proof Agents
+# The Agent Crowd
 
 Your agent team is a crowd. Le Bon (1895) showed what crowds do: individual
 judgment collapses, emotion amplifies, errors are contagious, and the most
